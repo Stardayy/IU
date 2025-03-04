@@ -1,5 +1,3 @@
-import static java.lang.Math.sqrt;
-
 public class Triangle {
     private double slide1, slide2, slide3;
     public Triangle(double slide1, double slide2, double slide3){
@@ -38,7 +36,10 @@ public class Triangle {
         return slide1 == slide2 || slide1 == slide3 || slide2 == slide3;
     }
 
-    
+    public boolean checkRightTriangle(){
+        return ((slide1 * slide1 + slide2 * slide2 == slide3 * slide3) || (slide2 * slide2 + slide3 * slide3 == slide1 * slide1) || (slide1 * slide1 + slide3 * slide3 == slide2 * slide2));
+    }
+
     public String verifyTriangle(){
         String type = "";
         if((slide1 + slide2 > slide3) && (slide1 + slide3 > slide2) && (slide2 + slide3 > slide1)){
@@ -47,6 +48,9 @@ public class Triangle {
 
             }else if(checkIsosceles()){
                 type = "Isosceles";
+
+            }else if(checkRightTriangle()){
+                type = "Right Triangle";
 
             }else{
                 type = "Scalene";
@@ -71,5 +75,8 @@ public class Triangle {
 
         Triangle triangle4 = new Triangle(3, 3, 7);
         System.out.println(triangle4.verifyTriangle());
+
+        Triangle triangle5 = new Triangle(3, 4, 5);
+        System.out.println(triangle5.verifyTriangle());
     }
 }
